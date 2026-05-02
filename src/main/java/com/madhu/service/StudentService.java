@@ -74,8 +74,12 @@ public class StudentService
 			}
 	}
 	public List<StudentEntity> getStudentsByName(String name) {
-	    return repository.findByName(name);
-	}
+    List<StudentEntity> list = repository.findByName(name);
+    if (list.isEmpty()) {
+        throw new RuntimeException("No students found with name: " + name);
+    }
+    return list;
+}
 
 	public StudentEntity getStudentByEmail(String email) {
 	    return repository.findByEmail(email)
