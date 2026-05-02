@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Error Page</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            background-color:#f4f4f4;
+            text-align:center;
+            margin-top:100px;
+        }
+
+        .error-box{
+            background:white;
+            padding:40px;
+            width:400px;
+            margin:auto;
+            border-radius:10px;
+            box-shadow:0px 0px 10px rgba(0,0,0,0.2);
+        }
+
+        h2{
+            color:red;
+        }
+
+        a{
+            text-decoration:none;
+            color:white;
+            background:#007bff;
+            padding:10px 20px;
+            border-radius:5px;
+        }
+
+        a:hover{
+            background:#0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="error-box">
+
+    <h2>Something Went Wrong</h2>
+
+    <p th:text="${error}">Error Message</p>
+
+    <br>
+
+    <a th:href="@{/students}">Go Back</a>
+
+</div>
+
+</body>
+</html>

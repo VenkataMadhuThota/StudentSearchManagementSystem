@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Students List</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            margin:40px;
+        }
+
+        table{
+            width:100%;
+            border-collapse: collapse;
+        }
+
+        th,td{
+            border:1px solid black;
+            padding:10px;
+            text-align:center;
+        }
+
+        th{
+            background-color:#f2f2f2;
+        }
+
+        a{
+            text-decoration:none;
+            padding:5px 10px;
+            background:darkgreen;
+            color:white;
+        }
+    </style>
+
+</head>
+<body>
+
+<h2>Students List</h2>
+<table>
+
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Course</th>
+        <th>Fee</th>
+		<th>status</th>
+        <th>Actions</th>
+		<th> Delete Actions</th>
+    </tr>
+
+    <tr th:each="student : ${students}">
+
+        <td th:text="${student.id}"></td>
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.email}"></td>
+        <td th:text="${student.course}"></td>
+        <td th:text="${student.fees}"></td>
+		<td th:text="${student.status}"></td>
+        <td>
+            <a th:href="@{/editstudent/{id}(id=${student.id})}">Edit</a>
+			<a th:href="@{/setstudentactive/{id}(id=${student.id})}">Set Student Active</a>
+        </td>
+		<td>
+		           <a th:href="@{/deletestudent/{id}(id=${student.id})}">Soft Delete</a>
+					<a th:href="@{/deletestudent1/{id}(id=${student.id})}">Hard Delete</a>
+		 </td>
+
+    </tr>
+
+</table><br><br>
+<a href="/mvctask/addstudent">Add Student</a>
+<a href="/mvctask/activestudents">All Active Students</a>
+<a href="/mvctask/inactivestudents">All InActive Students</a>
+<a href="/mvctask/students">All Students</a>
+<a href="/mvctask/find">Find Students</a>
+</body>
+</html>

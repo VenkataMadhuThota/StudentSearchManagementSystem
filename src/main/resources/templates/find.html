@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Find User Operations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 700px;
+            margin: 40px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .form-box {
+            border: 1px solid #ddd;
+            padding: 18px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background-color: #fafafa;
+        }
+
+        .form-box h3 {
+            margin-top: 0;
+            color: #444;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #bbb;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0026b7;
+        }
+
+        .result p {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>User Find Operations</h1>
+
+	<form class="form-box" th:action="@{/users/findById}" method="get">
+	    <label for="id">Enter User ID</label>
+	    <input type="number" id="id" name="id" placeholder="Enter user id" required>
+	    <button type="submit">Find By ID</button>
+	</form>
+
+	<form class="form-box" th:action="@{/users/findByName}" method="get">
+	    <label for="name">Enter User Name</label>
+	    <input type="text" id="name" name="name" placeholder="Enter user name" required>
+	    <button type="submit">Find By Name</button>
+	</form>
+
+	<form class="form-box" th:action="@{/users/findByEmail}" method="get">
+	    <label for="email">Enter Email</label>
+	    <input type="email" id="email" name="email" placeholder="Enter email" required>
+	    <button type="submit">Find By Email</button>
+	</form>
+
+
+    <div class="form-box result" th:if="${student != null}">
+        <h3>Student Details</h3>
+        <p><b>ID:</b> <span th:text="${student.id}"></span></p>
+        <p><b>Name:</b> <span th:text="${student.name}"></span></p>
+        <p><b>Email:</b> <span th:text="${student.email}"></span></p>
+        <p><b>Course:</b> <span th:text="${student.course}"></span></p>
+        <p><b>Fees:</b> <span th:text="${student.fees}"></span></p>
+        <p><b>Status:</b> <span th:text="${student.status}"></span></p>
+    </div>
+	<div class="form-box result" th:if="${students != null and !students.isEmpty()}">
+	    <h3>Students List</h3>
+	    <table border="1" cellpadding="8" cellspacing="0" width="100%">
+	        <tr>
+	            <th>ID</th>
+	            <th>Name</th>
+	            <th>Email</th>
+	            <th>Course</th>
+	            <th>Fees</th>
+	            <th>Status</th>
+	        </tr>
+	        <tr th:each="s : ${students}">
+	            <td th:text="${s.id}"></td>
+	            <td th:text="${s.name}"></td>
+	            <td th:text="${s.email}"></td>
+	            <td th:text="${s.course}"></td>
+	            <td th:text="${s.fees}"></td>
+	            <td th:text="${s.status}"></td>
+	        </tr>
+	    </table>
+	</div>
+</div>
+</body>
+</html>
