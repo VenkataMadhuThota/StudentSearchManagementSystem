@@ -292,6 +292,6 @@ Hibernate automatically creates the `student_entity` table on first run.
 | Error handling | Returns error.html | Returns JSON error body |
 
 ---
-
+## 👨‍💻 Author
 **Venkata Madhu Thota**
 GitHub: [@VenkataMadhuThota](https://github.com/VenkataMadhuThota)
